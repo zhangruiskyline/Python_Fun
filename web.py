@@ -26,21 +26,29 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.username
-
+'''
 @app.route("/")
-def index():
+def index(user=None):
     return render_template('index.html')
 '''
+@app.route("/")
 @app.route("/<user>")
 def index(user=None):
-    return render_template('user.html', user=user)
+    if user==None:
+        return render_template('index.html')
+    else:
+        return render_template('user.html', user=user)
+
+@app.route("/method")
+def method():
+    return "Method used: %s" % request.method
 
 
 @app.route("/shopping")
 def shopping():
     food = ["Cheese", "Tuna", "Beef"]
     return render_template('shopping.html', food=food)
-'''
+
 
 @app.route('/hello')
 def hello():
