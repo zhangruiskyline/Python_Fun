@@ -26,11 +26,8 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.username
-'''
-@app.route("/")
-def index(user=None):
-    return render_template('index.html')
-'''
+
+#Route these to the same function
 @app.route("/")
 @app.route("/<user>")
 def index(user=None):
